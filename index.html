@@ -294,6 +294,276 @@
     </section>
 
 
+    <!-- proproty search section -->
+
+
+    <div class="section-header text-center">
+        <h1 class="section-title">Search Property </h1>
+        <p class="section-subtitle">Book a Property Visit in Easy Steps</p>
+    </div>
+
+        <!-- Search Section -->
+        <section class="search-section py-5">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="search-card card shadow">
+                            <div class="card-body">
+                                <h2 class="card-title text-center mb-4">What are you looking for?</h2>
+                                <form id="propertySearchForm">
+                                    <div class="row g-3">
+                                        <div class="col-md-6">
+                                            <label for="propertyType" class="form-label">Property Type</label>
+                                            <select class="form-select" id="propertyType" required>
+                                                <option value="" selected disabled>Select type</option>
+                                                <option value="apartment">Apartment</option>
+                                                <option value="villa">Villa</option>
+                                                <option value="penthouse">Penthouse</option>
+                                                <option value="townhouse">Townhouse</option>
+                                                <option value="condo">Condo</option>
+                                                <option value="studio">Studio</option>
+                                                <option value="colonial">Colonial</option>
+                                                <option value="loft">Loft</option>
+                                                <option value="cabin">Cabin</option>
+                                                <option value="commercial">Commercial</option>
+                                                <option value="land">Land</option>
+                                                <option value="ranch">Ranch</option>
+                                                <option value="cottage">Cottage</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="purpose" class="form-label">Purpose</label>
+                                            <select class="form-select" id="purpose" required>
+                                                <option value="" selected disabled>Select purpose</option>
+                                                <option value="buy">Buy</option>
+                                                <option value="rent">Rent</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="bedrooms" class="form-label">Bedrooms</label>
+                                            <select class="form-select" id="bedrooms">
+                                                <option value="any">Any</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4+">4+</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="budget" class="form-label">Budget Range</label>
+                                            <select class="form-select" id="budget">
+                                                <option value="any">Any</option>
+                                                <option value="100-500">$100k - $500k</option>
+                                                <option value="500-1000">$500k - $1M</option>
+                                                <option value="1000+">$1M+</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-12 mt-4">
+                                            <button type="submit" class="btn btn-primary btn-lg w-100" id="searchBtn">
+                                                <i class="fas fa-search me-2"></i> Search Properties
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <!-- Results Section -->
+        <section class="results-section py-5 d-none" id="resultsSection">
+            <div class="container">
+                <h2 class="section-title text-center mb-5">Available Properties</h2>
+                <div class="row" id="propertyResults">
+                    <!-- Properties will be loaded here -->
+                </div>
+            </div>
+        </section>
+    
+        <!-- Booking Modal -->
+        <div class="modal fade" id="bookingModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Schedule a Visit</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="bookingForm">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h6 class="text-muted">Property Details</h6>
+                                    <div class="property-details mb-4 p-3 bg-light rounded">
+                                        <img src="" alt="Property Image" class="img-fluid mb-3 rounded" id="modalPropertyImage">
+                                        <h5 id="modalPropertyTitle"></h5>
+                                        <p id="modalPropertyAddress"></p>
+                                        <p id="modalPropertyPrice" class="fw-bold"></p>
+                                    </div>
+                                    
+                                    <h6 class="text-muted">Agent Details</h6>
+                                    <div class="agent-details mb-4 p-3 bg-light rounded">
+                                        <div class="d-flex align-items-center">
+                                            <img src="" alt="Agent Image" class="img-fluid rounded-circle me-3" id="modalAgentImage" width="60">
+                                            <div>
+                                                <h6 id="modalAgentName"></h6>
+                                                <p class="mb-1" id="modalAgentPhone"></p>
+                                                <p class="mb-1" id="modalAgentEmail"></p>
+                                                <p class="mb-0"><small>NestHorizon Certified Agent</small></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <h6 class="text-muted">Your Information</h6>
+                                    <div class="mb-3">
+                                        <label for="visitorName" class="form-label">Full Name</label>
+                                        <input type="text" class="form-control" id="visitorName" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="visitorEmail" class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="visitorEmail" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="visitorPhone" class="form-label">Phone Number</label>
+                                        <input type="tel" class="form-control" id="visitorPhone" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="visitDate" class="form-label">Preferred Visit Date</label>
+                                        <input type="date" class="form-control" id="visitDate" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="visitTime" class="form-label">Preferred Time</label>
+                                        <select class="form-select" id="visitTime" required>
+                                            <option value="morning">Morning (9AM - 12PM)</option>
+                                            <option value="afternoon">Afternoon (1PM - 4PM)</option>
+                                            <option value="evening">Evening (5PM - 7PM)</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3 form-check">
+                                        <input type="checkbox" class="form-check-input" id="agreeTerms" required>
+                                        <label class="form-check-label" for="agreeTerms">I agree to NestHorizon's terms and conditions</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Confirm Booking</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Booking Confirmation Modal -->
+        <div class="modal fade" id="confirmationModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header bg-success text-white">
+                        <h5 class="modal-title">Booking Confirmed!</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="confirmation-details">
+                                    <div class="d-flex justify-content-between align-items-center mb-4">
+                                        <img src="images/nesthorizon logo.jpeg" alt="NestHorizon Logo" class="img-fluid" width="120">
+                                        <div class="text-end">
+                                            <h6 class="mb-0">Booking Reference</h6>
+                                            <h4 class="text-success" id="bookingReference"></h4>
+                                        </div>
+                                    </div>
+                                    
+                                    <h5 class="mb-3">Visit Details</h5>
+                                    <div class="row mb-4">
+                                        <div class="col-md-6">
+                                            <p class="mb-1"><strong>Date:</strong> <span id="confirmVisitDate"></span></p>
+                                            <p class="mb-1"><strong>Time:</strong> <span id="confirmVisitTime"></span></p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p class="mb-1"><strong>Visitor:</strong> <span id="confirmVisitorName"></span></p>
+                                            <p class="mb-1"><strong>Contact:</strong> <span id="confirmVisitorPhone"></span></p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="property-confirm mb-4 p-3 border rounded">
+                                        <h6 class="text-muted">Property</h6>
+                                        <h5 id="confirmPropertyTitle"></h5>
+                                        <p id="confirmPropertyAddress"></p>
+                                        <p id="confirmPropertyPrice" class="fw-bold"></p>
+                                    </div>
+                                    
+                                    <div class="agent-confirm mb-4 p-3 border rounded">
+                                        <h6 class="text-muted">Your Agent</h6>
+                                        <div class="d-flex align-items-center">
+                                            <img src="" alt="Agent Image" class="img-fluid rounded-circle me-3" id="confirmAgentImage" width="60">
+                                            <div>
+                                                <h6 id="confirmAgentName"></h6>
+                                                <p class="mb-1" id="confirmAgentPhone"></p>
+                                                <p class="mb-1" id="confirmAgentEmail"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="notes p-3 bg-light rounded">
+                                        <h6 class="text-muted">Important Notes</h6>
+                                        <ul class="mb-0">
+                                            <li>Please arrive 10 minutes before your scheduled time</li>
+                                            <li>Bring a valid ID for verification</li>
+                                            <li>Your agent will meet you at the property location</li>
+                                            <li>Call your agent if you're running late</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="qr-section text-center p-3 border rounded">
+                                    <h6 class="mb-3">Scan QR Code for Verification</h6>
+                                    <div id="qrCode" class="mb-3"></div>
+                                    <p class="small text-muted">Show this code to your agent when you arrive</p>
+                                </div>
+                                <div class="d-grid gap-2 mt-4">
+                                    <button class="btn btn-outline-primary" id="downloadPdfBtn">
+                                        <i class="fas fa-download me-2"></i> Download PDF
+                                    </button>
+                                    <button class="btn btn-outline-success" id="addToCalendarBtn">
+                                        <i class="fas fa-calendar-plus me-2"></i> Add to Calendar
+                                    </button>
+                                    <button class="btn btn-outline-secondary" id="sendEmailBtn">
+                                        <i class="fas fa-envelope me-2"></i> Email Me Details
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" data-bs-dismiss="modal">Done</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Loading Spinner -->
+        <div class="loading-spinner d-none" id="loadingSpinner">
+            <div class="spinner-content">
+                <div class="spinner-border text-primary" role="status" style="width: 4rem; height: 4rem;">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <h4 class="mt-4">Finding the best properties for you...</h4>
+                <div class="search-criteria mt-3">
+                    <p><strong>Search Criteria:</strong></p>
+                    <p id="searchType"></p>
+                    <p id="searchPurpose"></p>
+                    <p id="searchBedrooms"></p>
+                    <p id="searchBudget"></p>
+                </div>
+            </div>
+        </div>
+
+
 
     <!-- User Testimonial -->
 
@@ -727,8 +997,748 @@
     </footer>
 
 
+    <script src="app.js"></script>
+
+
+    <!-- js for qr and pdf -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
     <!-- Js Script -->
-     <script src="app.js"></script>
+
+    <script>
+        // property search js 
+   // Property Data with all types
+   const properties = [
+    {
+        id: 1,
+        title: "Luxury Penthouse with Ocean View",
+        type: "penthouse",
+        purpose: "buy",
+        bedrooms: 3,
+        price: "$1,250,000",
+        address: "123 Ocean Drive, Miami, FL",
+        image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+        features: {
+            area: "2,500 sqft",
+            bathrooms: 3,
+            garage: 2,
+            year: 2020
+        },
+        agent: {
+            name: "Sarah Johnson",
+            phone: "(305) 555-1234",
+            email: "sarah@nesthorizon.com",
+            image: "https://randomuser.me/api/portraits/women/44.jpg"
+        }
+    },
+    {
+        id: 2,
+        title: "Modern Downtown Apartment",
+        type: "apartment",
+        purpose: "rent",
+        bedrooms: 2,
+        price: "$2,800/month",
+        address: "456 City Center, New York, NY",
+        image: "https://images.unsplash.com/photo-1493809842364-78817add7ffb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+        features: {
+            area: "1,200 sqft",
+            bathrooms: 2,
+            garage: 1,
+            year: 2018
+        },
+        agent: {
+            name: "Michael Chen",
+            phone: "(212) 555-5678",
+            email: "michael@nesthorizon.com",
+            image: "https://randomuser.me/api/portraits/men/32.jpg"
+        }
+    },
+    {
+        id: 3,
+        title: "Spacious Family Villa",
+        type: "villa",
+        purpose: "buy",
+        bedrooms: 4,
+        price: "$850,000",
+        address: "789 Hillside Ave, Los Angeles, CA",
+        image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+        features: {
+            area: "3,200 sqft",
+            bathrooms: 3.5,
+            garage: 2,
+            year: 2015
+        },
+        agent: {
+            name: "David Wilson",
+            phone: "(310) 555-9012",
+            email: "david@nesthorizon.com",
+            image: "https://randomuser.me/api/portraits/men/22.jpg"
+        }
+    },
+    {
+        id: 4,
+        title: "Charming Townhouse",
+        type: "townhouse",
+        purpose: "rent",
+        bedrooms: 3,
+        price: "$3,200/month",
+        address: "321 Main Street, Boston, MA",
+        image: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+        features: {
+            area: "1,800 sqft",
+            bathrooms: 2.5,
+            garage: 1,
+            year: 2017
+        },
+        agent: {
+            name: "Emily Rodriguez",
+            phone: "(617) 555-3456",
+            email: "emily@nesthorizon.com",
+            image: "https://randomuser.me/api/portraits/women/63.jpg"
+        }
+    },
+    {
+        id: 5,
+        title: "Waterfront Luxury Apartment",
+        type: "apartment",
+        purpose: "buy",
+        bedrooms: 2,
+        price: "$1,100,000",
+        address: "555 Bay View, San Francisco, CA",
+        image: "https://images.unsplash.com/photo-1505692952047-1a78307da8f2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+        features: {
+            area: "1,500 sqft",
+            bathrooms: 2,
+            garage: 1,
+            year: 2019
+        },
+        agent: {
+            name: "Robert Kim",
+            phone: "(415) 555-7890",
+            email: "robert@nesthorizon.com",
+            image: "https://randomuser.me/api/portraits/men/75.jpg"
+        }
+    },
+    {
+        id: 6,
+        title: "Modern Suburban Home",
+        type: "villa",
+        purpose: "buy",
+        bedrooms: 5,
+        price: "$1,750,000",
+        address: "888 Green Valley, Austin, TX",
+        image: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+        features: {
+            area: "3,800 sqft",
+            bathrooms: 4,
+            garage: 3,
+            year: 2021
+        },
+        agent: {
+            name: "Jennifer Lee",
+            phone: "(512) 555-2345",
+            email: "jennifer@nesthorizon.com",
+            image: "https://randomuser.me/api/portraits/women/85.jpg"
+        }
+    },
+    {
+        id: 7,
+        title: "Luxury Condo with City Views",
+        type: "condo",
+        purpose: "buy",
+        bedrooms: 2,
+        price: "$750,000",
+        address: "101 Skyline Blvd, Chicago, IL",
+        image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+        features: {
+            area: "1,400 sqft",
+            bathrooms: 2,
+            garage: 1,
+            year: 2018
+        },
+        agent: {
+            name: "Thomas Wright",
+            phone: "(312) 555-6789",
+            email: "thomas@nesthorizon.com",
+            image: "https://randomuser.me/api/portraits/men/45.jpg"
+        }
+    },
+    {
+        id: 8,
+        title: "Cozy Studio in Arts District",
+        type: "studio",
+        purpose: "rent",
+        bedrooms: 0,
+        price: "$1,200/month",
+        address: "202 Creative Lane, Portland, OR",
+        image: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+        features: {
+            area: "550 sqft",
+            bathrooms: 1,
+            garage: 0,
+            year: 2016
+        },
+        agent: {
+            name: "Olivia Martinez",
+            phone: "(503) 555-4567",
+            email: "olivia@nesthorizon.com",
+            image: "https://randomuser.me/api/portraits/women/28.jpg"
+        }
+    },
+    {
+        id: 9,
+        title: "Historic Colonial Home",
+        type: "colonial",
+        purpose: "buy",
+        bedrooms: 4,
+        price: "$950,000",
+        address: "303 Heritage Street, Philadelphia, PA",
+        image: "https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+        features: {
+            area: "3,000 sqft",
+            bathrooms: 3.5,
+            garage: 2,
+            year: 1925,
+            restored: 2010
+        },
+        agent: {
+            name: "Benjamin Harris",
+            phone: "(215) 555-7896",
+            email: "benjamin@nesthorizon.com",
+            image: "https://randomuser.me/api/portraits/men/65.jpg"
+        }
+    },
+    {
+        id: 10,
+        title: "Modern Loft in Downtown",
+        type: "loft",
+        purpose: "rent",
+        bedrooms: 1,
+        price: "$2,100/month",
+        address: "404 Industrial Ave, Denver, CO",
+        image: "https://images.unsplash.com/photo-1493809842364-78817add7ffb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+        features: {
+            area: "1,100 sqft",
+            bathrooms: 1,
+            garage: 0,
+            year: 2017
+        },
+        agent: {
+            name: "Sophia Garcia",
+            phone: "(303) 555-1239",
+            email: "sophia@nesthorizon.com",
+            image: "https://randomuser.me/api/portraits/women/33.jpg"
+        }
+    },
+    {
+        id: 11,
+        title: "Vacation Cabin by the Lake",
+        type: "cabin",
+        purpose: "buy",
+        bedrooms: 3,
+        price: "$450,000",
+        address: "505 Lakeside Road, Lake Tahoe, CA",
+        image: "https://images.unsplash.com/photo-1475855581690-80accde3ae2b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+        features: {
+            area: "1,800 sqft",
+            bathrooms: 2,
+            garage: 1,
+            year: 2008,
+            waterfront: true
+        },
+        agent: {
+            name: "Daniel Brown",
+            phone: "(530) 555-4562",
+            email: "daniel@nesthorizon.com",
+            image: "https://randomuser.me/api/portraits/men/25.jpg"
+        }
+    },
+    {
+        id: 12,
+        title: "Commercial Office Space",
+        type: "commercial",
+        purpose: "rent",
+        bedrooms: 0,
+        price: "$5,000/month",
+        address: "606 Business Center, Dallas, TX",
+        image: "https://images.unsplash.com/photo-1497366811353-6870744d04b2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+        features: {
+            area: "2,500 sqft",
+            bathrooms: 2,
+            parking: 5,
+            year: 2019,
+            floors: 1
+        },
+        agent: {
+            name: "Jessica Wilson",
+            phone: "(214) 555-7893",
+            email: "jessica@nesthorizon.com",
+            image: "https://randomuser.me/api/portraits/women/55.jpg"
+        }
+    },
+    {
+        id: 13,
+        title: "Vacant Land for Development",
+        type: "land",
+        purpose: "buy",
+        bedrooms: 0,
+        price: "$350,000",
+        address: "707 Rural Highway, Sedona, AZ",
+        image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+        features: {
+            area: "5 acres",
+            zoning: "Residential",
+            utilities: "Electricity, Water Available",
+            year: "N/A"
+        },
+        agent: {
+            name: "Richard Taylor",
+            phone: "(928) 555-1236",
+            email: "richard@nesthorizon.com",
+            image: "https://randomuser.me/api/portraits/men/15.jpg"
+        }
+    },
+    {
+        id: 14,
+        title: "Luxury Ranch Estate",
+        type: "ranch",
+        purpose: "buy",
+        bedrooms: 5,
+        price: "$3,200,000",
+        address: "808 Countryside Lane, Santa Fe, NM",
+        image: "https://images.unsplash.com/photo-1600585152220-90363fe7e115?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+        features: {
+            area: "6,500 sqft",
+            bathrooms: 5.5,
+            garage: 4,
+            year: 2016,
+            acreage: "20 acres"
+        },
+        agent: {
+            name: "Amanda Scott",
+            phone: "(505) 555-4569",
+            email: "amanda@nesthorizon.com",
+            image: "https://randomuser.me/api/portraits/women/22.jpg"
+        }
+    },
+    {
+        id: 15,
+        title: "Beachfront Cottage",
+        type: "cottage",
+        purpose: "rent",
+        bedrooms: 2,
+        price: "$3,500/month",
+        address: "909 Coastal Highway, Malibu, CA",
+        image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+        features: {
+            area: "1,200 sqft",
+            bathrooms: 2,
+            garage: 1,
+            year: 2014,
+            beachAccess: "Private"
+        },
+        agent: {
+            name: "Christopher Adams",
+            phone: "(310) 555-7891",
+            email: "christopher@nesthorizon.com",
+            image: "https://randomuser.me/api/portraits/men/35.jpg"
+        }
+    }
+];
+
+// DOM Elements
+const searchForm = document.getElementById('propertySearchForm');
+const resultsSection = document.getElementById('resultsSection');
+const propertyResults = document.getElementById('propertyResults');
+const loadingSpinner = document.getElementById('loadingSpinner');
+const bookingModal = new bootstrap.Modal(document.getElementById('bookingModal'));
+const confirmationModal = new bootstrap.Modal(document.getElementById('confirmationModal'));
+const bookingForm = document.getElementById('bookingForm');
+const themeToggle = document.getElementById('themeToggle');
+const downloadPdfBtn = document.getElementById('downloadPdfBtn');
+
+// Current Booking Data
+let currentBooking = {
+    property: null,
+    agent: null,
+    visitor: null,
+    visitDate: null,
+    visitTime: null,
+    reference: null
+};
+
+// Initialize the app
+document.addEventListener('DOMContentLoaded', function() {
+    // Theme toggle
+  //  themeToggle.addEventListener('click', toggleTheme);
+    
+    // Search form submission
+    searchForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        searchProperties();
+    });
+    
+    // Booking form submission
+    bookingForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        confirmBooking();
+    });
+    
+    // PDF download button
+    downloadPdfBtn.addEventListener('click', generatePdf);
+});
+
+// Search properties based on form criteria
+function searchProperties() {
+    // Show loading spinner
+    loadingSpinner.classList.remove('d-none');
+    
+    // Display search criteria in loading screen
+    const propertyType = document.getElementById('propertyType');
+    const purpose = document.getElementById('purpose');
+    const bedrooms = document.getElementById('bedrooms');
+    const budget = document.getElementById('budget');
+    
+    document.getElementById('searchType').textContent = `Type: ${propertyType.options[propertyType.selectedIndex].text || 'Any'}`;
+    document.getElementById('searchPurpose').textContent = `Purpose: ${purpose.options[purpose.selectedIndex].text || 'Any'}`;
+    document.getElementById('searchBedrooms').textContent = `Bedrooms: ${bedrooms.options[bedrooms.selectedIndex].text || 'Any'}`;
+    document.getElementById('searchBudget').textContent = `Budget: ${budget.options[budget.selectedIndex].text || 'Any'}`;
+    
+    // Simulate API call delay
+    setTimeout(function() {
+        // Filter properties
+        const filteredProperties = properties.filter(property => {
+            let matches = true;
+            
+            if (propertyType.value && property.type !== propertyType.value) matches = false;
+            if (purpose.value && property.purpose !== purpose.value) matches = false;
+            if (bedrooms.value !== 'any') {
+                if (bedrooms.value === '4+' && property.bedrooms < 4) matches = false;
+                if (bedrooms.value !== '4+' && property.bedrooms != bedrooms.value) matches = false;
+            }
+            if (budget.value !== 'any') {
+                const priceNum = parseInt(property.price.replace(/[^0-9]/g, ''));
+                if (budget.value === '100-500' && (priceNum < 100000 || priceNum > 500000)) matches = false;
+                if (budget.value === '500-1000' && (priceNum < 500000 || priceNum > 1000000)) matches = false;
+                if (budget.value === '1000+' && priceNum < 1000000) matches = false;
+            }
+            
+            return matches;
+        });
+        
+        // Display results
+        displayResults(filteredProperties);
+        
+        // Hide loading spinner
+        loadingSpinner.classList.add('d-none');
+    }, 2000);
+}
+
+// Display filtered properties
+function displayResults(filteredProperties) {
+    // Show results section
+    resultsSection.classList.remove('d-none');
+    
+    // Clear previous results
+    propertyResults.innerHTML = '';
+    
+    if (filteredProperties.length === 0) {
+        propertyResults.innerHTML = `
+            <div class="col-12 text-center py-5">
+                <i class="fas fa-home fa-3x mb-3 text-muted"></i>
+                <h3>No properties found matching your criteria</h3>
+                <p>Try adjusting your search filters</p>
+            </div>
+        `;
+        return;
+    }
+    
+    // Create property cards
+    filteredProperties.forEach(property => {
+        const card = document.createElement('div');
+        card.className = 'col-md-6 col-lg-4';
+        card.innerHTML = `
+            <div class="property-card card h-100">
+                <span class="badge badge-type text-white">${property.type}</span>
+                <img src="${property.image}" class="card-img-top" alt="${property.title}">
+                <div class="card-body">
+                    <h5 class="card-title">${property.title}</h5>
+                    <p class="card-text text-muted"><i class="fas fa-map-marker-alt"></i> ${property.address}</p>
+                    <div class="price mb-3">${property.price}</div>
+                    <div class="features">
+                        <span><i class="fas fa-ruler-combined"></i> ${property.features.area}</span>
+                        <span><i class="fas fa-bed"></i> ${property.bedrooms} ${property.bedrooms === 1 ? 'bed' : 'beds'}</span>
+                        <span><i class="fas fa-bath"></i> ${property.features.bathrooms} ${property.features.bathrooms === 1 ? 'bath' : 'baths'}</span>
+                        ${property.features.garage ? `<span><i class="fas fa-car"></i> ${property.features.garage} ${property.features.garage === 1 ? 'garage' : 'garages'}</span>` : ''}
+                        <span><i class="fas fa-calendar-alt"></i> ${property.features.year || 'N/A'}</span>
+                        ${property.features.waterfront ? '<span><i class="fas fa-water"></i> Waterfront</span>' : ''}
+                    </div>
+                    <div class="agent d-flex">
+                        <img src="${property.agent.image}" alt="${property.agent.name}">
+                        <div class="agent-info">
+                            <h6 class="mb-0">${property.agent.name}</h6>
+                            <small>NestHorizon Agent</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer bg-transparent border-top-0">
+                    <button class="btn btn-primary btn-book" data-id="${property.id}">
+                        <i class="fas fa-calendar-alt me-2"></i> Book a Visit
+                    </button>
+                </div>
+            </div>
+        `;
+        
+        propertyResults.appendChild(card);
+    });
+    
+    // Add event listeners to booking buttons
+    document.querySelectorAll('.btn-book').forEach(button => {
+        button.addEventListener('click', function() {
+            const propertyId = parseInt(this.getAttribute('data-id'));
+            const property = properties.find(p => p.id === propertyId);
+            openBookingModal(property);
+        });
+    });
+    
+    // Scroll to results
+    resultsSection.scrollIntoView({ behavior: 'smooth' });
+}
+
+// Open booking modal with property details
+function openBookingModal(property) {
+    currentBooking.property = property;
+    currentBooking.agent = property.agent;
+    
+    // Set property details in modal
+    document.getElementById('modalPropertyTitle').textContent = property.title;
+    document.getElementById('modalPropertyAddress').textContent = property.address;
+    document.getElementById('modalPropertyPrice').textContent = property.price;
+    document.getElementById('modalPropertyImage').src = property.image;
+    
+    // Set agent details in modal
+    document.getElementById('modalAgentName').textContent = property.agent.name;
+    document.getElementById('modalAgentPhone').textContent = property.agent.phone;
+    document.getElementById('modalAgentEmail').textContent = property.agent.email;
+    document.getElementById('modalAgentImage').src = property.agent.image;
+    
+    // Set default visit date (tomorrow)
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    document.getElementById('visitDate').valueAsDate = tomorrow;
+    
+    // Open modal
+    bookingModal.show();
+}
+
+// Confirm booking and show confirmation
+function confirmBooking() {
+    // Get visitor details
+    currentBooking.visitor = {
+        name: document.getElementById('visitorName').value,
+        email: document.getElementById('visitorEmail').value,
+        phone: document.getElementById('visitorPhone').value
+    };
+    
+    currentBooking.visitDate = document.getElementById('visitDate').value;
+    currentBooking.visitTime = document.getElementById('visitTime').value;
+    
+    // Generate booking reference
+    currentBooking.reference = 'NH-' + Math.floor(100000 + Math.random() * 900000);
+    
+    // Set confirmation details
+    document.getElementById('bookingReference').textContent = currentBooking.reference;
+    document.getElementById('confirmVisitorName').textContent = currentBooking.visitor.name;
+    document.getElementById('confirmVisitorPhone').textContent = currentBooking.visitor.phone;
+    
+    // Format visit date
+    const visitDate = new Date(currentBooking.visitDate);
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    document.getElementById('confirmVisitDate').textContent = visitDate.toLocaleDateString('en-US', options);
+    
+    // Format visit time
+    let timeText = '';
+    switch(currentBooking.visitTime) {
+        case 'morning': timeText = '9:00 AM - 12:00 PM'; break;
+        case 'afternoon': timeText = '1:00 PM - 4:00 PM'; break;
+        case 'evening': timeText = '5:00 PM - 7:00 PM'; break;
+    }
+    document.getElementById('confirmVisitTime').textContent = timeText;
+    
+    // Set property details in confirmation
+    document.getElementById('confirmPropertyTitle').textContent = currentBooking.property.title;
+    document.getElementById('confirmPropertyAddress').textContent = currentBooking.property.address;
+    document.getElementById('confirmPropertyPrice').textContent = currentBooking.property.price;
+    
+    // Set agent details in confirmation
+    document.getElementById('confirmAgentName').textContent = currentBooking.agent.name;
+    document.getElementById('confirmAgentPhone').textContent = currentBooking.agent.phone;
+    document.getElementById('confirmAgentEmail').textContent = currentBooking.agent.email;
+    document.getElementById('confirmAgentImage').src = currentBooking.agent.image;
+    
+    // Generate QR code
+    const qrData = `NestHorizon Booking\nRef: ${currentBooking.reference}\nProperty: ${currentBooking.property.title}\nVisitor: ${currentBooking.visitor.name}\nDate: ${visitDate.toLocaleDateString()}\nTime: ${timeText}`;
+    document.getElementById('qrCode').innerHTML = '';
+    new QRCode(document.getElementById('qrCode'), {
+        text: qrData,
+        width: 150,
+        height: 150,
+        colorDark: "#000000",
+        colorLight: "#ffffff",
+        correctLevel: QRCode.CorrectLevel.H
+    });
+    
+    // Close booking modal and open confirmation
+    bookingModal.hide();
+    confirmationModal.show();
+}
+
+       // Enhanced PDF Generation Function
+       async function generatePdf() {
+const { jsPDF } = window.jspdf;
+const doc = new jsPDF();
+
+// Helper function to safely load an image as dataURL
+async function loadImage(src) {
+return new Promise((resolve) => {
+    const img = new Image();
+    img.crossOrigin = 'Anonymous';
+    img.onload = () => {
+        const canvas = document.createElement('canvas');
+        canvas.width = img.width;
+        canvas.height = img.height;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0);
+        resolve(canvas.toDataURL('image/jpeg'));
+    };
+    img.onerror = () => {
+        console.warn(`Could not load image: ${src}`);
+        resolve(null);
+    };
+    img.src = src;
+});
+}
+
+// Load all images
+const logoImg = await loadImage('images/nesthorizon logo.jpeg');
+const propertyImg = await loadImage(currentBooking.property.image);
+const agentImg = await loadImage(currentBooking.agent.image);
+const qrCanvas = document.querySelector('#qrCode canvas');
+const qrImage = qrCanvas ? qrCanvas.toDataURL('image/png') : null;
+
+// Header
+if (logoImg) doc.addImage(logoImg, 'JPEG', 15, 15, 40, 13);
+doc.setFontSize(20);
+doc.setTextColor(40, 53, 147);
+doc.text('Booking Confirmation', 105, 25, { align: 'center' });
+doc.setFontSize(12);
+doc.setTextColor(0, 0, 0);
+doc.text(`Reference: ${currentBooking.reference}`, 160, 20);
+
+// Divider
+doc.setDrawColor(40, 53, 147);
+doc.setLineWidth(0.5);
+doc.line(15, 30, 195, 30);
+
+// Visitor Info
+doc.setFontSize(14);
+doc.text('Visitor Information', 15, 40);
+doc.setFontSize(12);
+doc.text(`Name: ${currentBooking.visitor.name}`, 15, 48);
+doc.text(`Email: ${currentBooking.visitor.email}`, 15, 56);
+doc.text(`Phone: ${currentBooking.visitor.phone}`, 15, 64);
+
+// Visit Details
+doc.setFontSize(14);
+doc.text('Visit Details', 15, 80);
+doc.setFontSize(12);
+const visitDate = new Date(currentBooking.visitDate);
+const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+const formattedDate = visitDate.toLocaleDateString('en-US', options);
+
+let timeText = '';
+switch (currentBooking.visitTime) {
+case 'morning': timeText = '9:00 AM - 12:00 PM'; break;
+case 'afternoon': timeText = '1:00 PM - 4:00 PM'; break;
+case 'evening': timeText = '5:00 PM - 7:00 PM'; break;
+}
+
+doc.text(`Date: ${formattedDate}`, 15, 88);
+doc.text(`Time: ${timeText}`, 15, 96);
+
+// Property Details
+doc.setFontSize(14);
+doc.text('Property Details', 15, 112);
+if (propertyImg) doc.addImage(propertyImg, 'JPEG', 15, 120, 50, 35);
+
+doc.setFontSize(12);
+doc.text(`Title: ${currentBooking.property.title}`, 70, 120);
+doc.text(`Address: ${currentBooking.property.address}`, 70, 128);
+doc.text(`Price: ${currentBooking.property.price}`, 70, 136);
+
+// Agent Details
+doc.setFontSize(14);
+doc.text('Agent Information', 15, 162);
+if (agentImg) doc.addImage(agentImg, 'JPEG', 15, 170, 30, 30);
+
+doc.setFontSize(12);
+doc.text(`Name: ${currentBooking.agent.name}`, 50, 170);
+doc.text(`Phone: ${currentBooking.agent.phone}`, 50, 178);
+doc.text(`Email: ${currentBooking.agent.email}`, 50, 186);
+
+// Notes
+doc.setFontSize(14);
+doc.text('Important Notes', 15, 202);
+doc.setFontSize(10);
+doc.text('- Please arrive 10 minutes before your scheduled time', 15, 210);
+doc.text('- Bring a valid ID for verification', 15, 216);
+doc.text('- Your agent will meet you at the property location', 15, 222);
+doc.text('- Call your agent if you\'re running late', 15, 228);
+
+// QR Code
+if (qrImage) {
+doc.addImage(qrImage, 'PNG', 150, 200, 40, 40);
+doc.setFontSize(10);
+doc.text('Scan QR Code for Verification', 150, 245);
+}
+
+// Footer
+doc.setDrawColor(200, 200, 200);
+doc.line(15, 260, 195, 260);
+if (logoImg) doc.addImage(logoImg, 'JPEG', 15, 265, 30, 10);
+
+doc.setFontSize(10);
+doc.setTextColor(100, 100, 100);
+doc.text('NestHorizon Real Estate Services', 50, 270);
+doc.text('123 Business Ave, Suite 100, New York, NY 10001', 50, 275);
+doc.text('Phone: (555) 123-4567 | Email: info@nesthorizon.com', 50, 280);
+
+// Terms
+doc.setFontSize(8);
+doc.text('Terms and Conditions: This booking confirmation is subject to NestHorizon\'s terms of service.', 15, 290, { maxWidth: 180 });
+
+// Save PDF
+doc.save(`NestHorizon-Booking-${currentBooking.reference}.pdf`);
+}
+
+
+// Toggle dark/light theme
+function toggleTheme() {
+    document.body.classList.toggle('dark-mode');
+    
+    if (document.body.classList.contains('dark-mode')) {
+        themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+    } else {
+        themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+    }
+}
+
+
+
+    </script>
+     
     <!-- Bootstrap JS Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
